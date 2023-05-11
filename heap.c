@@ -29,6 +29,7 @@ void* heap_top(Heap* pq)
 
 void heap_push(Heap* pq, void* data, int priority)
 {
+  heapElem aux;
   if (pq->size >= pq->capac)
   {
     pq->heapArray = realloc(pq->heapArray, pq->capac * 2); 
@@ -36,30 +37,22 @@ void heap_push(Heap* pq, void* data, int priority)
   }
   pq->heapArray[pq->size - 1].data = data;
   pq->heapArray[pq->size - 1].priority = priority;
-  int posicionActual = pq->size - 1;
+  int posicion = pq->size - 1;
   pq->size++;
-  int padrePosicion = (posicionActual - 1) / 2;
-  
-  while (pq->heapArray[posicionActual].priority > 
-          pq->heapArray[padrePosicion].priority)
+  int padre = (posicion - 1) / 2;
+
+  while (pq->heapArray[posicion].priority > pq->heapArray[padre].priority)
   {
-    if (pq->heapArray[padrePosicion].priority < 
-        pq->heapArray[posicionActual].priority)      
+    if (pq->heapArray[posicion].priority > pq->heapArray[padre].priority)
     {
-      void *aux = pq->heapArray[posicionActual].data;
-      int prAux = pq->heapArray[posicionActual].priority; 
-      pq->heapArray[posicionActual].data = pq->heapArray[padrePosicion].data;
-      pq->heapArray[posicionActual].priority = 
-        pq->heapArray[padrePosicion].priority;
-      
-      pq->heapArray[padrePosicion].data = aux;
-      pq->heapArray[padrePosicion].priority = prAux;
-      
-      return;
+      aux = pq->heapArray[posicion];
+      pq->heapArray[posicion] = pq->heapArray[padre];
+      pq->heapArray[padre] = aux;
+      posicion = padre;
+      padre = (posicion - 1) / 2;
     }
-    posicionActual--;
-    padrePosicion = (posicionActual - 1) / 2;
   }
+ 
 
 }
 void heap_pop(Heap* pq){
