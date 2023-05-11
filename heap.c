@@ -17,8 +17,10 @@ typedef struct Heap{
 } Heap;
 
 
-void* heap_top(Heap* pq){
-    return NULL;
+void* heap_top(Heap* pq)
+{
+  void *top = pq->heapArray[0].data;
+    return top;
 }
 
 
