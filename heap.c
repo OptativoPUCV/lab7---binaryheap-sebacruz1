@@ -67,15 +67,9 @@ void heap_push(Heap* pq, void* data, int priority)
 }
 void heap_pop(Heap* pq)
 {
-  int pMax = 0;
   for (int i = 0; i < pq->size - 1; i++)
   {
-    if (pq->heapArray[i].priority > pMax)
-    {
-      pMax = i;
-    }
-    for (int j = pMax; j < pq->size - 1; j++)
-      pq->heapArray[j] = pq->heapArray[j + 1];
+    pq->heapArray[i] = pq->heapArray[i + 1];
   }
 }
 
