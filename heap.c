@@ -66,12 +66,12 @@ void heap_push(Heap* pq, void* data, int priority)
 
 }
 void heap_pop(Heap* pq)
-{
+{/*
   for (int i = 0; i < pq->size - 1; i++)
   {
     pq->heapArray[i] = pq->heapArray[i + 1];
   }
-  pq->size--;
+  pq->size--;*/
 }
 
 Heap* createHeap()
