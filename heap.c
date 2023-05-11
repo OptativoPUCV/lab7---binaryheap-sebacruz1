@@ -35,9 +35,17 @@ void heap_push(Heap* pq, void* data, int priority)
     pq->heapArray = realloc(pq->heapArray, pq->capac * 2); 
     
   }
-  pq->heapArray[pq->size - 1].data = data;
-  pq->heapArray[pq->size - 1].priority = priority;
-  int posicion = pq->size - 1;
+  
+  if (pq->size == 0)
+  {
+    pq->heapArray[0].data = data;
+    pq->heapArray[0].priority = priority;
+    pq->size++;
+  }
+  
+  pq->heapArray[pq->size].data = data;
+  pq->heapArray[pq->size].priority = priority;
+  int posicion = pq->size;
   pq->size++;
   int padre = (posicion - 1) / 2;
 
