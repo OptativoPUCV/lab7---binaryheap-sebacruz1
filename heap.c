@@ -32,7 +32,8 @@ void heap_push(Heap* pq, void* data, int priority)
   heapElem aux;
   if (pq->size >= pq->capac)
   {
-    pq->heapArray = realloc(pq->heapArray, pq->capac * 3); 
+    pq->heapArray = realloc(pq->heapArray, pq->capac * 2); 
+    pq->size = pq->capac * 2 + 1;
     
   }
   
